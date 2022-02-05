@@ -1,6 +1,6 @@
 ## Javascript React Test
 
-Implementation of a simple Movie Portal App (Mobile and Desktop responsive) using React framework.
+Implementation of a simple Movie Portal App (Mobile and Desktop responsive) using Angular framework.
 
 The app must have these mandatory features: 
 
