@@ -2,7 +2,9 @@ module.exports = {
   purge: [],
   darkMode: 'media', // or 'media' or 'class' or false
   theme: {
-    extend: {},
+    extend: {
+      transform: ['hover']
+    },
   },
   content: [
     "./src/**/*.{html, ts}",

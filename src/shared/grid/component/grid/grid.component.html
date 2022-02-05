@@ -1,0 +1,31 @@
+<div 
+    class="container
+        h-full
+        overflow-auto
+        gap-6 mx-auto
+        grid grid-cols-1
+        sm:grid-cols-3
+        md:grid-cols-5
+        overscroll-contain
+        lg:grid-cols-7"
+        infiniteScroll
+        [infiniteScrollDistance]="1"
+        [scrollWindow]="false"
+        (scrolled)="onScroll($event)"
+>
+    <figure *ngFor="let movie of gridData.list() | async" class="w-full cursor-pointer flex flex-col justify-between">
+        <img [src]="movie.posterUrl" (error)="imageNotFound(movie)" class="rounded-md w-full duration-500 ease-in transition-transform transform hover:scale-105" [alt]="movie.title">
+        <figcaption>
+            <table class="w-full">
+                <tr>
+                    <td class="w-1/4 text-sm font-bold">Title</td>
+                    <td class="overflow-ellipsis whitespace-nowrap overflow-hidden">{{movie.title}}</td>
+                </tr>
+                <tr>
+                    <td class="text-sm">Year</td>
+                    <td>{{movie.year}}</td>
+                </tr>
+            </table>
+        </figcaption>
+    </figure>
+</div>
