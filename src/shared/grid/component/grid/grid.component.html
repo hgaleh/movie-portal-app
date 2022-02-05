@@ -2,6 +2,7 @@
     class="container
         h-full
         overflow-auto
+        overflow-x-hidden
         gap-6 mx-auto
         grid grid-cols-1
         sm:grid-cols-3
@@ -13,8 +14,10 @@
         [scrollWindow]="false"
         (scrolled)="onScroll($event)"
 >
-    <figure *ngFor="let movie of gridData.list() | async" class="w-full cursor-pointer flex flex-col justify-between">
-        <img [src]="movie.posterUrl" (error)="imageNotFound(movie)" class="rounded-md w-full duration-500 ease-in transition-transform transform hover:scale-105" [alt]="movie.title">
+    <figure *ngFor="let movie of gridData.list() | async" class="w-full duration-500 hover:scale-105 ease-in
+    transition-transform transform cursor-pointer flex flex-col justify-between">
+        <img [src]="movie.posterUrl" draggable="false" (error)="imageNotFound(movie)" class="
+            rounded-md w-full select-none" [alt]="movie.title">
         <figcaption>
             <table class="w-full">
                 <tr>
