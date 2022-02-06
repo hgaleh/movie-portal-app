@@ -3,8 +3,6 @@ import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs/internal/Observable";
 import { map } from "rxjs/operators";
 import { Movie } from "src/shared/grid/component/movie";
-import { Grid } from "src/shared/model/grid";
-import { RouterService, ROUTER_SERVICE_PROVIDR } from "src/shared/service/router.service";
 import { DashboardService } from "../dashboard.service";
 
 @Component({

@@ -11,12 +11,12 @@ export class Grid {
 
     constructor(private api: MovieApi, private keyword$: Observable<string>) {
         this.scroll();
-        this.keyword$.subscribe(key => {
+        this.subscription.add(this.keyword$.subscribe(key => {
             this.previousKeyword = key;
             this.pageIndex = 0;
             this.movieList.next([]);
             this.scroll();
-        });
+        }));
     }
 
     scroll(): void {
