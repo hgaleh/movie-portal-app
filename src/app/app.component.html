@@ -9,15 +9,15 @@
 <mat-sidenav-container>
     <mat-sidenav #snav mode="over">
         <mat-nav-list>
-            <a mat-list-item routerLink="/">
+            <a mat-list-item routerLink="/" (click)="snav.toggle()" routerLinkActive="bg-gray-200">
                 <mat-icon class="mr-2">grid_view</mat-icon>
                 Dashboard
             </a>
-            <a mat-list-item routerLink="/favorite">
+            <a mat-list-item routerLink="/favorite" (click)="snav.toggle()" routerLinkActive="bg-gray-200">
                 <mat-icon class="mr-2">star_border</mat-icon>
                 Favorites
             </a>
-            <a mat-list-item routerLink="/later">
+            <a mat-list-item routerLink="/later" (click)="snav.toggle()" routerLinkActive="bg-gray-200">
                 <mat-icon class="mr-2">bookmark_border</mat-icon>
                 Watch Later
             </a>
