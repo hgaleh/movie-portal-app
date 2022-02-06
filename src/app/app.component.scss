@@ -1,6 +1,14 @@
 :host {
-    display: block;
-    bit-grid {
-        height: 500px;
+    mat-sidenav-container {
+        height: calc(100% - 64px);
+    }
+
+    mat-sidenav-content {
+        ::ng-deep {
+            ng-component {
+                height: 100%;
+                display: block;
+            }
+        }
     }
 }

@@ -1,6 +1,25 @@
 :host {
-    display: block;
-    table {
-        table-layout: fixed;
-    }
+  display: block;
+  table {
+    table-layout: fixed;
+  }
+
+  .container {
+    // overflow-y: overlay;
+  }
+
+  ::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #393812;
+    -webkit-border-radius: 1ex;
+}
+
+::-webkit-scrollbar-corner {
+    background: #000;
+}
 }
