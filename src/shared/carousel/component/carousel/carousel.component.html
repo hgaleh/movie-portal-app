@@ -1,0 +1,6 @@
+<div class="container">
+    <div *ngFor="let slide of slides" (click)="onSlideClick(slide)" class="slide" [class.active]="slide === selectedSlide"
+        [class.nonActive]="slide !== selectedSlide">
+        <span *ngIf="slide === 0"></span>
+    </div>
+</div>
