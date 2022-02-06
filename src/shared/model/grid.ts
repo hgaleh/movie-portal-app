@@ -1,6 +1,6 @@
-import { BehaviorSubject, Observable, Subscriber, Subscription } from "rxjs";
-import { Movie } from "./movie";
-import { MovieApi } from "./movie-api";
+import { BehaviorSubject, Observable, Subscription } from "rxjs";
+import { MovieDTO as Movie } from "./movie.dto";
+import { MovieApi } from "../grid/component/movie-api";
 
 export class Grid {
     private readonly pageSize = 20;

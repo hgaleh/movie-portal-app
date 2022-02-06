@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from "@angular/core";
 import { IInfiniteScrollEvent } from "ngx-infinite-scroll";
-import { Grid } from "../grid";
+import { Grid } from "../../../model/grid";
 import { GridService } from "../grid.service";
 import { Movie } from "../movie";
 
@@ -22,9 +22,5 @@ export class GridComponent implements OnDestroy {
 
     onScroll(e: IInfiniteScrollEvent): void {
         this.gridData.scroll();
-    }
-
-    imageNotFound(movie: Movie): void {
-        movie.posterUrl = '/assets/broken_image_black_24dp.svg';
     }
 }

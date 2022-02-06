@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
-import { Movie } from "./movie";
+import { MovieDTO } from "../../model/movie.dto";
 
 export interface MovieApi {
-    (pageIndex: number, pageSize: number): Observable<Movie[]>;
+    (pageIndex: number, pageSize: number): Observable<MovieDTO[]>;
 }

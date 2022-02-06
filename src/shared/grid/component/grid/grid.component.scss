@@ -1,8 +1,5 @@
 :host {
   display: block;
-  table {
-    table-layout: fixed;
-  }
 
   .container {
     // overflow-y: overlay;
@@ -12,14 +9,14 @@
     height: 12px;
     width: 8px;
     background: transparent;
-}
+  }
 
-::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background: #393812;
     -webkit-border-radius: 1ex;
-}
+  }
 
-::-webkit-scrollbar-corner {
+  ::-webkit-scrollbar-corner {
     background: #000;
-}
+  }
 }

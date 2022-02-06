@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { GridComponent } from "./component/grid/grid.component";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { CommonModule } from "@angular/common";
+import { ThumbnailModule } from "../thumbnail/thumbnail.module";
 
 @NgModule({
     declarations: [
@@ -12,7 +13,8 @@ import { CommonModule } from "@angular/common";
     ],
     imports: [
         InfiniteScrollModule,
-        CommonModule
+        CommonModule,
+        ThumbnailModule
     ]
 })
 export class GridModule { }

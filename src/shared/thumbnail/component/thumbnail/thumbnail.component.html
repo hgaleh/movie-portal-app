@@ -1,0 +1,17 @@
+<figure class="w-full duration-200 hover:scale-105 ease-in
+    transition-all rounded-md hover:shadow-md transform cursor-pointer flex flex-col justify-between">
+    <img [src]="movie.posterUrl" draggable="false" (error)="imageNotFound(movie)" class="
+            rounded-md w-full select-none" [alt]="movie.title">
+    <figcaption>
+        <table class="w-full">
+            <tr>
+                <td class="w-1/4 text-sm font-bold">Title</td>
+                <td class="overflow-ellipsis whitespace-nowrap overflow-hidden">{{movie.title}}</td>
+            </tr>
+            <tr>
+                <td class="text-sm">Year</td>
+                <td>{{movie.year}}</td>
+            </tr>
+        </table>
+    </figcaption>
+</figure>
