@@ -1,6 +1,14 @@
-<div class="container">
-    <div *ngFor="let slide of slides" (click)="onSlideClick(slide)" class="slide" [class.active]="slide === selectedSlide"
-        [class.nonActive]="slide !== selectedSlide">
-        <span *ngIf="slide === 0"></span>
+<div class="card-list" #cardList
+    (pointerdown)="onDragStart($event)"
+    (pointermove)="onDrag($event)"
+    (pointerup)="onDragEnd($event)"
+    (pointerleave)="onDragEnd($event)"
+    (touchstart)="onDragStart($event)"
+    >
+    <div class="card-list_card"
+        *ngFor="let movie of infinitScroll.itemsChange | async">
+        <div class="card-list_card_core fadeIn rounded-md" [style.backgroundImage]="getImageUrl(movie)">
+        </div>
+        <p class="card-list_card_title">{{movie.title}}</p>
     </div>
 </div>

@@ -1,75 +1,55 @@
 :host {
-  .container {
-    width: 100%;
-    height: 400px;
-    border-bottom: 5px solid darkred;
-    display: flex;
-    margin: auto;
-    padding: 10px;
-    justify-content: center;
-    box-shadow: 0px 3px 15px;
-
-    .slide {
-      min-width: 10px;
-      width: 50px;
-      height: 100%;
-      justify-content: center;
-      cursor: pointer;
-      margin: 0 10px;
-      border-radius: 50px;
-      display: flex;
-      align-items: flex-end;
-      background-size: cover;
-      background-position: center;
-      box-shadow: 3px 3px 5px black;
-      opacity: 0.5;
-      transition-duration: 1s;
-
-      &.active {
-        flex-grow: 1;
-        opacity: 1;
-        padding: 0 10px;
-        border-radius: 25px;
-        padding-bottom: 10px;
-      }
-
-      &.nonActive {
-        flex-grow: 0;
-        opacity: 0.5;
-      }
-
-      &:nth-of-type(1) {
-        background-image: url("https://cdn.wallpapersafari.com/68/12/9a2wy5.jpeg");
-      }
-
-      &:nth-of-type(2) {
-        background-image: url("https://cdn.wallpapersafari.com/3/53/0xgnyc.jpg");
-      }
-
-      &:nth-of-type(3) {
-        background-image: url("https://mcdn.wallpapersafari.com/medium/28/35/fslPOF.jpg");
-      }
-
-      &:nth-of-type(4) {
-        background-image: url("https://mcdn.wallpapersafari.com/medium/18/88/gsAVlZ.jpg");
-      }
-
-      &:nth-of-type(5) {
-        background-image: url("https://mcdn.wallpapersafari.com/medium/7/54/v7t0ST.jpg");
-      }
-
-      &:nth-of-type(6) {
-        background-image: url("https://mcdn.wallpapersafari.com/medium/16/66/Iv6KfC.jpg");
-      }
+    .card-list {
+        $card-width: 162px;
+        display: flex;
+        overflow: hidden;
+        
+        &_card {
+            width: $card-width;
+            margin-right: 10px;
+            cursor: pointer;
+         
+            &_core {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 234px;
+                background-size: cover;
+                width: $card-width;
+        
+                img {
+                    width: 100%;
+                    border-radius: 50%;
+                }
+            }
+        
+            &_title {
+                text-align: center;
+                font-size: 14px;
+                margin-top: 16px;
+                margin-bottom: 0;
+                white-space: nowrap;
+                width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+        
+        .card--loading {
+            width: $card-width;
+            padding: 20px 25px 25px;
+            border-radius: 25px;
+        
+            &_core {
+                height: 140px;
+                border-radius: 61px;
+            }
+        
+            &_title {
+                height: 18px;
+                margin-top: 16px;
+                border-radius: 25px;
+            }
+        }
     }
-  }
-
-  @media screen and (max-width: 700px) {
-    .slide {
-      width: 20px;
-    }
-    .active {
-      border-radius: 25px;
-    }
-  }
 }

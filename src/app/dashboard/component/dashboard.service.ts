@@ -11,7 +11,7 @@ export class DashboardService {
 
     getBestMovies(): Observable<Movie[]> {
         return this.movieService.getAllMovies().pipe(map(allMovies => {
-            return allMovies.movies.slice(5, 10).map(m => new Movie(m));
+            return allMovies.movies.slice(5, 20).map(m => new Movie(m));
         }));
     }
 }
