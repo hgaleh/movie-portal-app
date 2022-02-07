@@ -1,8 +1,6 @@
-## Javascript React Test
-
 Implementation of a simple Movie Portal App (Mobile and Desktop responsive) using Angular framework.
 
-The app must have these mandatory features: 
+The app have these mandatory features: 
 
 1. A dashboard with 2 components:
     - A carousel with some selected movies (e.x. highest movie runtime) 
