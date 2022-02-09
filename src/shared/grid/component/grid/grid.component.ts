@@ -1,31 +1,22 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
 import { IInfiniteScrollEvent } from "ngx-infinite-scroll";
-import { Observable } from "rxjs/internal/Observable";
-import { Grid } from "../../../model/grid";
-import { GridService } from "../grid.service";
+import { Observable } from "rxjs";
+import { Movie } from "../movie";
 
 @Component({
     selector: 'bit-grid',
     templateUrl: './grid.component.html',
-    styleUrls: [ './grid.component.scss' ],
-    providers: [ GridService ]
+    styleUrls: [ './grid.component.scss' ]
 })
-export class GridComponent implements OnDestroy, OnInit {
+export class GridComponent {
     
-    public gridData!: Grid;
-    @Input() keyword!: Observable<string>;
+    // @Input() keyword!: Observable<string>;
+    @Input() movieList!: Movie[] | null;
+    @Output() scroll = new EventEmitter<void>();
 
-    constructor(private service: GridService) {}
-
-    ngOnInit(): void {
-        this.gridData = new Grid(this.service.getMoviesPagable(), this.keyword);
-    }
-
-    ngOnDestroy(): void {
-        this.gridData.destroy();
-    }
+    constructor() {}
 
     onScroll(e: IInfiniteScrollEvent): void {
-        this.gridData.scroll();
+        this.scroll.emit();
     }
 }

@@ -14,5 +14,8 @@
         [scrollWindow]="false"
         (scrolled)="onScroll($event)"
 >
-    <bit-thumbnail *ngFor="let movie of gridData.list() | async" [movie]="movie"></bit-thumbnail>
+    <bit-thumbnail 
+        *ngFor="let movie of movieList"
+        [movie]="movie"
+    ></bit-thumbnail>
 </div>

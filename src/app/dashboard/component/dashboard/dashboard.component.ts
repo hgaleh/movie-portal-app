@@ -1,7 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs/internal/Observable";
 import { map } from "rxjs/operators";
+import { GridComponent } from "src/shared/grid/component/grid/grid.component";
 import { Movie } from "src/shared/grid/component/movie";
 import { DashboardService } from "../dashboard.service";
 
@@ -12,14 +13,20 @@ import { DashboardService } from "../dashboard.service";
         DashboardService
     ]
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
     movieList$: Observable<Movie[]>;
-    keyword$: Observable<string>;
+    allMovieList$!: Observable<Movie[]>;
+    @ViewChild('grid', { static: true }) grid!: GridComponent;
+
     constructor(
-        service: DashboardService,
+        private service: DashboardService,
         private activatedRoute: ActivatedRoute
     ) {
-        this.keyword$ = this.activatedRoute.queryParams.pipe(map(par => par['keyword'] || ''));
         this.movieList$ = service.getBestMovies();
+    }
+    
+    ngOnInit(): void {
+        const keyword$ = this.activatedRoute.queryParams.pipe(map(par => par['keyword'] || ''));
+        this.allMovieList$ = this.service.getMoviesPagable(this.grid.scroll, keyword$);
     }
 }

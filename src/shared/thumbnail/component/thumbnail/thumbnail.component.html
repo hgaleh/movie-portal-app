@@ -2,7 +2,7 @@
     transition-all rounded-md hover:shadow-md transform cursor-pointer flex flex-col justify-between">
     <img [src]="movie.posterUrl" draggable="false" (error)="imageNotFound(movie)" class="
             rounded-md w-full select-none" [alt]="movie.title">
-    <figcaption>
+    <figcaption class="flex">
         <table class="w-full">
             <tr>
                 <td class="w-1/4 text-sm font-bold">Title</td>
@@ -13,5 +13,30 @@
                 <td>{{movie.year}}</td>
             </tr>
         </table>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="self-start" aria-label="thumbnail menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button (click)="toggleLater($event)" mat-menu-item>
+                <span [class.hidden]="!movie.isLater">
+                    <mat-icon>bookmark</mat-icon>
+                    <span>Added to Later</span>
+                </span>
+                <span [class.hidden]="movie.isLater">
+                    <mat-icon [class.hidden]="movie.isLater">bookmark_border</mat-icon>
+                    <span [class.hidden]="movie.isLater">Add to Later</span>
+                </span>
+            </button>
+            <button (click)="toggleFavorite($event)" mat-menu-item>
+                <span [class.hidden]="!movie.isFavorite">
+                    <mat-icon>star</mat-icon>
+                    <span>Added to Favorite</span>
+                </span>
+                <span [class.hidden]="movie.isFavorite">
+                    <mat-icon>star_border</mat-icon>
+                    <span>Add to Favorite</span>
+                </span>
+            </button>
+        </mat-menu>
     </figcaption>
 </figure>

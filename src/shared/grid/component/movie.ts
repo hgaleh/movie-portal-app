@@ -11,6 +11,8 @@ export class Movie implements MovieDTO {
     actors!: string;
     plot!: string;
     posterUrl!: string;
+    isFavorite?: boolean;
+    isLater?: boolean;
 
     constructor(dto: MovieDTO) {
         Object.assign(this, dto);

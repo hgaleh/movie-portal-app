@@ -1,4 +1,5 @@
 <bit-grid
-    [keyword]="keyword$"
+    [movieList]="allMovieList$ | async"
+    #grid
 ></bit-grid>
 <bit-carousel class="container mx-auto mt-4" [movieList]="(movieList$ | async)"></bit-carousel>
