@@ -1,3 +1,14 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" class="self-start" aria-label="thumbnail menu">
+    {{ genreText || 'Select Genre' }}
+</button>
+<mat-menu #menu="matMenu">
+    <button (click)="onGenreChange(undefined)" mat-menu-item>
+        All
+    </button>
+    <button *ngFor="let gen of genreList$ | async" (click)="onGenreChange(gen)" mat-menu-item>
+        {{ gen || 'Genre Name' }}
+    </button>
+</mat-menu>
 <div 
     class="container
         h-full

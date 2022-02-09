@@ -5,6 +5,7 @@ import { Observable } from "rxjs/internal/Observable";
 import { Movie } from "../grid/component/movie";
 import { Genre } from "../model/genre";
 import { MovieDTO } from "../model/movie.dto";
+import { genreMatch } from "../utility/genre-match";
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +19,10 @@ export class MovieService {
                 movies.movies.map(mov => new Movie(mov))
             );
         });
+    }
+
+    getGenreList(): Observable<Genre[]> {
+        return this.getAllMovies().pipe(map(d => d.genres));
     }
 
     getMovies(): Observable<Movie[]> {
@@ -35,12 +40,12 @@ export class MovieService {
         );
     }
 
-    getFavoriteMovies(): Observable<Movie[]> {
-        return this.movieList$.pipe(map(movies => movies.filter(movie => movie.isFavorite)))
+    getFavoriteMovies(genre?: Genre): Observable<Movie[]> {
+        return this.movieList$.pipe(map(movies => movies.filter(movie => movie.isFavorite && genreMatch(movie, genre))))
     }
 
-    getLaterMovies(): Observable<Movie[]> {
-        return this.movieList$.pipe(map(movies => movies.filter(movie => movie.isLater)))
+    getLaterMovies(genre?: Genre): Observable<Movie[]> {
+        return this.movieList$.pipe(map(movies => movies.filter(movie => movie.isLater && genreMatch(movie, genre))))
     }
 
     private getAllMovies(): Observable<{

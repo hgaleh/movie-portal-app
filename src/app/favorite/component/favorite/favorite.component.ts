@@ -1,15 +1,21 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
+import { GridComponent } from "src/shared/grid/component/grid/grid.component";
 import { Movie } from "src/shared/grid/component/movie";
-import { MovieService } from "src/shared/service/movie.service";
+import { FavoriteService } from "../../favorite.service";
 
 @Component({
     templateUrl: './favorite.component.html',
-    styleUrls: [ './favorite.component.scss' ]
+    styleUrls: [ './favorite.component.scss' ],
+    providers: [
+        FavoriteService
+    ]
 })
 export class FavoriteComponent {
     readonly gridData$: Observable<Movie[]>;
-    constructor(service: MovieService) {
-        this.gridData$ = service.getFavoriteMovies();
+    @ViewChild('grid', { static: true }) grid!: GridComponent;
+
+    constructor(service: FavoriteService) {
+        this.gridData$ = service.getFavoritesPagable(this.grid.scroll, this.grid.genre);
     }
 }
