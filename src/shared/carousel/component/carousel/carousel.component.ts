@@ -1,12 +1,14 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Subscription } from "rxjs";
 import { Movie } from "src/shared/model/movie";
-import { InfinitScroll } from "../infinit-scroll";
+import { InfinitScroll } from "../../infinit-scroll";
+import { InfiniteScrollService } from "../../infinite-scroll.service";
 
 @Component({
     selector: 'bit-carousel',
     templateUrl: './carousel.component.html',
-    styleUrls: [ './carousel.component.scss' ]
+    styleUrls: [ './carousel.component.scss' ],
+    providers: [ InfiniteScrollService ]
 })
 export class CarouselComponent implements OnInit, OnDestroy {
 
@@ -16,10 +18,8 @@ export class CarouselComponent implements OnInit, OnDestroy {
     private subscription = new Subscription();
     private dragging!: boolean;
   
-    constructor() {
-      this.infinitScroll = new InfinitScroll(
-        <Movie[]>[], 172, 0
-      );
+    constructor(private service: InfiniteScrollService) {
+      this.infinitScroll = service.getNewInfiniteScroll();
     }
   
     ngOnDestroy(): void {

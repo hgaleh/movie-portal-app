@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, map, of, shareReplay } from "rxjs";
+import { BehaviorSubject, map, shareReplay } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { Genre } from "../model/genre";
 import { Movie } from "../model/movie";
