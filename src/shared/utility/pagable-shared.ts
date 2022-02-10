@@ -1,4 +1,4 @@
-import { combineLatest, map, mergeMap, startWith } from "rxjs";
+import { combineLatest, map, mergeMap, startWith, Subscription } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { Movie } from "../model/movie";
 import { Genre } from "../model/genre";
@@ -16,10 +16,13 @@ export function pagableShared(
 ): Observable<Movie[]> {
     const obs = new Observable(observer => {
         let scrollCounter: number;
-        combineLatest([decade$.pipe(startWith(undefined)), genre$.pipe(startWith(undefined))]).
-            subscribe(([decade, genre]) => {
+        let subscription: Subscription;
+        let innerSubscription = new Subscription();
+        subscription = combineLatest([decade$.pipe(startWith(undefined)), genre$.pipe(startWith(undefined))]).
+        subscribe(([decade, genre]) => {
                 scrollCounter = 0;
-                scroll$.pipe(startWith(undefined)).subscribe(() => {
+                innerSubscription.unsubscribe();
+                innerSubscription = scroll$.pipe(startWith(undefined)).subscribe(() => {
                     scrollCounter++;
                     observer.next({
                         scroll: scrollCounter,
@@ -27,8 +30,10 @@ export function pagableShared(
                         decade
                     })
                 })
+                subscription.add(innerSubscription);
             }
         )
+        return subscription;
     }).pipe(
         mergeMap((res: any) => {
             return movies$.pipe(map(all => {
