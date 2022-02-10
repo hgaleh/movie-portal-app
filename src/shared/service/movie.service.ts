@@ -33,7 +33,7 @@ export class MovieService {
         return this.getMovies().pipe(
             map(movies => movies.map(movie => Math.floor(Number(movie.year)/10) * 10)),
             map(decades => new Set(decades)),
-            map(decades => Array.from(decades))
+            map(decades => Array.from(decades).sort((a, b) => a - b))
         )
     }
 

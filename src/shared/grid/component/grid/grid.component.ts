@@ -11,16 +11,19 @@ import { Movie } from "../../../model/movie";
     styleUrls: [ './grid.component.scss' ]
 })
 export class GridComponent {
-    
-    // @Input() keyword!: Observable<string>;
+
     @Input() movieList!: Movie[] | null;
     @Output() scroll = new EventEmitter<void>();
     @Output() genre = new EventEmitter<Genre>();
+    @Output() decade = new EventEmitter<number>();
     genreText?: Genre;
+    selectedDecade?: number;
     genreList$: Observable<Genre[]>;
+    decadeList$: Observable<number[]>;
 
     constructor(movieService: MovieService) {
         this.genreList$ = movieService.getGenreList();
+        this.decadeList$ = movieService.getDecadeList();
     }
 
     onScroll(e: IInfiniteScrollEvent): void {
@@ -30,6 +33,11 @@ export class GridComponent {
     onGenreChange(gen?: Genre): void {
         this.genre.emit(gen);
         this.genreText = gen;
+    }
+
+    onDecadeChange(decade?: number): void {
+        this.decade.emit(decade);
+        this.selectedDecade = decade;
     }
 
     trackByFn(index: number, item: Movie): any {

@@ -1,12 +1,24 @@
-<button mat-flat-button color="primary" [matMenuTriggerFor]="menu" class="self-start" aria-label="thumbnail menu">
+<button mat-flat-button color="primary" [matMenuTriggerFor]="menuGenre" class="self-start btn-genre" aria-label="thumbnail menu">
     {{ genreText || 'Select Genre' }}
 </button>
-<mat-menu #menu="matMenu">
+<mat-menu #menuGenre="matMenu">
     <button (click)="onGenreChange(undefined)" mat-menu-item>
         All
     </button>
     <button *ngFor="let gen of genreList$ | async" (click)="onGenreChange(gen)" mat-menu-item>
-        {{ gen || 'Genre Name' }}
+        {{ gen }}
+    </button>
+</mat-menu>
+
+<button mat-flat-button color="primary" [matMenuTriggerFor]="menuDecade" class="self-start" aria-label="thumbnail menu">
+    {{ selectedDecade | decade }}
+</button>
+<mat-menu #menuDecade="matMenu">
+    <button (click)="onDecadeChange(undefined)" mat-menu-item>
+        All
+    </button>
+    <button *ngFor="let decade of decadeList$ | async" (click)="onDecadeChange(decade)" mat-menu-item>
+        {{ decade | decade }}
     </button>
 </mat-menu>
 <div 

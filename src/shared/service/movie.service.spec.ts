@@ -21,19 +21,6 @@ const mockData: {
     ],
     movies: [
         {
-            id: 10,
-            title: 'TITLE',
-            year: '2002',
-            runtime: '100',
-            genres: [ 'Comedy' ],
-            director: 'DIRECTOR',
-            actors: 'ACTORS',
-            plot: 'PLOT',
-            posterUrl: 'POSTERURL',
-            isFavorite: true,
-            isLater: true 
-        },
-        {
             id: 20,
             title: 'TITLE2',
             year: '2012',
@@ -44,6 +31,19 @@ const mockData: {
             plot: 'PLOT2',
             posterUrl: 'POSTERURL2',
             isFavorite: false,
+            isLater: true 
+        },
+        {
+            id: 10,
+            title: 'TITLE',
+            year: '2002',
+            runtime: '100',
+            genres: [ 'Comedy' ],
+            director: 'DIRECTOR',
+            actors: 'ACTORS',
+            plot: 'PLOT',
+            posterUrl: 'POSTERURL',
+            isFavorite: true,
             isLater: true 
         },
         {

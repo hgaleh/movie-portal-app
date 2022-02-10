@@ -1,6 +1,10 @@
 :host {
   display: block;
 
+  .btn-genre {
+    margin-right: 0.5rem;
+  }
+
   ::-webkit-scrollbar {
     height: 12px;
     width: 8px;
@@ -9,7 +13,7 @@
 
   ::-webkit-scrollbar-thumb {
     background: #393812;
-    -webkit-border-radius: 1ex;
+    border-radius: 1ex;
   }
 
   ::-webkit-scrollbar-corner {
