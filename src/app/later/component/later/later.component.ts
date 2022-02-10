@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
 import { GridComponent } from "src/shared/grid/component/grid/grid.component";
-import { Movie } from "src/shared/grid/component/movie";
+import { Movie } from "src/shared/model/movie";
 import { LaterService } from "../../later.service";
 
 @Component({

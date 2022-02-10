@@ -3,7 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs/internal/Observable";
 import { map } from "rxjs/operators";
 import { GridComponent } from "src/shared/grid/component/grid/grid.component";
-import { Movie } from "src/shared/grid/component/movie";
+import { Movie } from "src/shared/model/movie";
 import { DashboardService } from "../dashboard.service";
 
 @Component({

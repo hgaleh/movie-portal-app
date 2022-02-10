@@ -3,7 +3,7 @@ import { IInfiniteScrollEvent } from "ngx-infinite-scroll";
 import { Observable } from "rxjs";
 import { Genre } from "src/shared/model/genre";
 import { MovieService } from "src/shared/service/movie.service";
-import { Movie } from "../movie";
+import { Movie } from "../../../model/movie";
 
 @Component({
     selector: 'bit-grid',

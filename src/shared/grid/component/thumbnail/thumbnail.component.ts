@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Movie } from "src/shared/grid/component/movie";
+import { Movie } from "src/shared/model/movie";
 import { MovieService } from "src/shared/service/movie.service";
 
 @Component({

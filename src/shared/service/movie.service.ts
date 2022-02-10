@@ -1,10 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, map, share, shareReplay } from "rxjs";
+import { BehaviorSubject, map, shareReplay } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
-import { Movie } from "../grid/component/movie";
 import { Genre } from "../model/genre";
-import { MovieDTO } from "../model/movie.dto";
+import { Movie } from "../model/movie";
 import { genreMatch } from "../utility/genre-match";
 
 @Injectable({
@@ -16,7 +15,7 @@ export class MovieService {
     constructor(private httpClient: HttpClient) {
         this.getAllMovies().subscribe(movies => {
             this.movieList$.next(
-                movies.movies.map(mov => new Movie(mov))
+                movies.movies
             );
         });
     }
@@ -50,11 +49,11 @@ export class MovieService {
 
     private getAllMovies(): Observable<{
         genres: Genre[],
-        movies: MovieDTO[]
+        movies: Movie[]
     }> {
         return this.httpClient.get<{
             genres: Genre[],
-            movies: MovieDTO[]
+            movies: Movie[]
         }>('/assets/data.json');
     }
 }

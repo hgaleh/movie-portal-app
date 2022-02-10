@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { Subscription } from "rxjs";
-import { Movie } from "src/shared/grid/component/movie";
+import { Movie } from "src/shared/model/movie";
 import { InfinitScroll } from "../infinit-scroll";
 
 @Component({

@@ -1,6 +1,6 @@
 import { map, mergeMap, startWith } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
-import { Movie } from "../grid/component/movie";
+import { Movie } from "../model/movie";
 import { Genre } from "../model/genre";
 import { genreMatch } from "./genre-match";
 

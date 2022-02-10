@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { ThumbnailModule } from "../thumbnail/thumbnail.module";
 import { CarouselComponent } from "./component/carousel/carousel.component";
 
 @NgModule({
@@ -8,8 +7,7 @@ import { CarouselComponent } from "./component/carousel/carousel.component";
         CarouselComponent
     ],
     imports: [
-        CommonModule,
-        ThumbnailModule
+        CommonModule
     ],
     exports: [
         CarouselComponent

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { combineLatest, map, mergeMap, of, startWith, Subscription, withLatestFrom } from "rxjs";
+import { combineLatest, map, mergeMap, startWith, Subscription } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
-import { Movie } from "src/shared/grid/component/movie";
+import { Movie } from "src/shared/model/movie";
 import { Genre } from "src/shared/model/genre";
 import { MovieService } from "src/shared/service/movie.service";
 import { genreMatch } from "src/shared/utility/genre-match";
@@ -33,7 +33,6 @@ export class DashboardService {
                 innerSubscription.unsubscribe();
                 innerSubscription = scroll$.pipe(startWith(undefined)).subscribe(() => {
                     scrollCounter++;
-                    console.log({scrollCounter});
                     observer.next({
                         scroll: scrollCounter,
                         keyword: key,

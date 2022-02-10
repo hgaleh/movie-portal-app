@@ -1,14 +1,16 @@
-import { NgModule } from "@angular/core";
-import { GridComponent } from "./component/grid/grid.component";
-import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { CommonModule } from "@angular/common";
-import { ThumbnailModule } from "../thumbnail/thumbnail.module";
+import { NgModule } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { GridComponent } from "./component/grid/grid.component";
+import { ThumbnailComponent } from "./component/thumbnail/thumbnail.component";
 
 @NgModule({
     declarations: [
-        GridComponent
+        GridComponent,
+        ThumbnailComponent
     ],
     exports: [
         GridComponent
@@ -16,9 +18,9 @@ import { MatMenuModule } from "@angular/material/menu";
     imports: [
         InfiniteScrollModule,
         CommonModule,
-        ThumbnailModule,
         MatButtonModule,
-        MatMenuModule
+        MatMenuModule,
+        MatIconModule
     ]
 })
 export class GridModule { }
