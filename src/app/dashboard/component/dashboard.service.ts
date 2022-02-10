@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { combineLatest, map, mergeMap, startWith } from "rxjs";
+import { combineLatest, map, mergeMap, startWith, Subscription } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { Movie } from "src/shared/grid/component/movie";
 import { Genre } from "src/shared/model/genre";
@@ -9,7 +9,6 @@ import { genreMatch } from "src/shared/utility/genre-match";
 @Injectable()
 export class DashboardService {
     private readonly pageSize = 20;
-
     constructor(private movieService: MovieService) { }
 
     getBestMovies(): Observable<Movie[]> {
@@ -26,18 +25,20 @@ export class DashboardService {
 
     getMoviesPagable(scroll$: Observable<void>, keyword$: Observable<string>, genre$: Observable<Genre>): Observable<Movie[]> {
         const obs = new Observable(observer => {
+            const subscription = new Subscription();
             let scrollCounter: number;
-            combineLatest([keyword$, genre$]).pipe(startWith(['', ''])).subscribe(([key, genre]) => {
+            subscription.add(combineLatest([keyword$, genre$]).pipe(startWith(['', ''])).subscribe(([key, genre]) => {
                 scrollCounter = 0;
-                scroll$.pipe(startWith(undefined)).subscribe(() => {
+                subscription.add(scroll$.pipe(startWith(undefined)).subscribe(() => {
                     scrollCounter++;
                     observer.next({
                         scroll: scrollCounter,
                         keyword: key,
                         genre
                     })
-                })
-            })
+                }))
+            }))
+            return subscription;
         }).pipe(
             mergeMap((res: any) => {
                 return this.movieService.getMovies().pipe(map(all => {
