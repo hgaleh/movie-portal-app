@@ -18,7 +18,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   
     constructor() {
       this.infinitScroll = new InfinitScroll(
-        <Movie[]>[], 162, 0
+        <Movie[]>[], 172, 0
       );
     }
   

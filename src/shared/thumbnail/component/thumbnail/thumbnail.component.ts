@@ -21,7 +21,6 @@ export class ThumbnailComponent {
     toggleLater(e: MouseEvent): void {
         e.preventDefault();
         e.stopPropagation();
-        console.log({before: this.movie});
         const after = Object.assign({}, this.movie, { isLater: !this.movie.isLater })
         this.movieService.updateMovie(
             after

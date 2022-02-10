@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { combineLatest, map, mergeMap, startWith, Subscription } from "rxjs";
+import { combineLatest, map, mergeMap, of, startWith, Subscription, withLatestFrom } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { Movie } from "src/shared/grid/component/movie";
 import { Genre } from "src/shared/model/genre";
@@ -12,9 +12,9 @@ export class DashboardService {
     constructor(private movieService: MovieService) { }
 
     getBestMovies(): Observable<Movie[]> {
-        return this.movieService.getMovies().pipe(map(allMovies => {
-            return this.selectBestMovies(allMovies);
-        }));
+        return this.movieService.getMovies().pipe(map(movies => {
+            return this.selectBestMovies(movies);
+        }))
     }
 
     private selectBestMovies(movie: Movie[]): Movie[] {

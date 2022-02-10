@@ -1,4 +1,4 @@
-import { Subscription } from "rxjs";
+import { BehaviorSubject, Subscription } from "rxjs";
 import { interval } from "rxjs/internal/observable/interval";
 import { animationFrameScheduler } from "rxjs/internal/scheduler/animationFrame";
 import { Subject } from "rxjs/internal/Subject";
@@ -10,7 +10,7 @@ export class InfinitScroll<T> {
     private scrollLocationPosition = 0;
     private readonly scrollMargin = 100;
     scrollLeftChange = new Subject<number>();
-    itemsChange = new Subject<T[]>();
+    itemsChange = new BehaviorSubject<T[]>([]);
     private subscription = new Subscription();
 
     constructor(
@@ -23,9 +23,7 @@ export class InfinitScroll<T> {
 
     changeItems(val: T[]): void {
         this.scrollItems = [...val, ...val];
-        this.scrollLocationPosition = 0;
         this.itemsChange.next(this.scrollItems);
-        this.scrollLeftChange.next(this.scrollLocationPosition);
     }
 
     autoplay(): Subscription {

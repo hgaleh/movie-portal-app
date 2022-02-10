@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, map } from "rxjs";
+import { BehaviorSubject, map, share, shareReplay } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { Movie } from "../grid/component/movie";
 import { Genre } from "../model/genre";
@@ -22,7 +22,7 @@ export class MovieService {
     }
 
     getGenreList(): Observable<Genre[]> {
-        return this.getAllMovies().pipe(map(d => d.genres));
+        return this.getAllMovies().pipe(map(d => d.genres), shareReplay(1));
     }
 
     getMovies(): Observable<Movie[]> {
