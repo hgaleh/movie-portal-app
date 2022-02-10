@@ -15,14 +15,14 @@
         overflow-x-hidden
         overflow-y-auto
         gap-6 mx-auto
+        pb-2
         grid grid-cols-1
         sm:grid-cols-3
         md:grid-cols-5
-        overscroll-contain
         lg:grid-cols-7"
         infiniteScroll
         [infiniteScrollDistance]="1"
-        [scrollWindow]="false"
+        [scrollWindow]="true"
         (scrolled)="onScroll($event)"
 >
     <bit-thumbnail 
