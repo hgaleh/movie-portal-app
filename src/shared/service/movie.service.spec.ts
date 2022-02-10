@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { Genre } from '../model/genre';
