@@ -26,17 +26,21 @@ export class DashboardService {
     getMoviesPagable(scroll$: Observable<void>, keyword$: Observable<string>, genre$: Observable<Genre>): Observable<Movie[]> {
         const obs = new Observable(observer => {
             const subscription = new Subscription();
+            let innerSubscription = new Subscription();
             let scrollCounter: number;
-            subscription.add(combineLatest([keyword$, genre$]).pipe(startWith(['', ''])).subscribe(([key, genre]) => {
+            subscription.add(combineLatest([keyword$, genre$.pipe(startWith(''))]).subscribe(([key, genre]) => {
                 scrollCounter = 0;
-                subscription.add(scroll$.pipe(startWith(undefined)).subscribe(() => {
+                innerSubscription.unsubscribe();
+                innerSubscription = scroll$.pipe(startWith(undefined)).subscribe(() => {
                     scrollCounter++;
+                    console.log({scrollCounter});
                     observer.next({
                         scroll: scrollCounter,
                         keyword: key,
                         genre
                     })
-                }))
+                });
+                subscription.add(innerSubscription);
             }))
             return subscription;
         }).pipe(
