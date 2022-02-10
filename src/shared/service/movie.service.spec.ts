@@ -101,6 +101,97 @@ describe('movie service test', () => {
             ])
             done();
         })
-    })
+    });
 
+    it('getGenreList works', (done) => {
+        service.getGenreList().subscribe(genres => {
+            expect(genres).toEqual([
+                'Comedy',
+                'Fantasy'
+            ]);
+            done();
+        })
+    });
+
+    it('getMovies works', (done) => {
+        service.getMovies().subscribe(movies => {
+            expect(movies).toEqual(mockData.movies)
+            done();
+        });
+    });
+
+    it('updateMovie updates the movie', (done) => {
+        let count = 0;
+        service.getMovies().subscribe(movies => {
+            count++;
+            if (count === 1) {
+                expect(movies[1].title).toBe('TITLE');
+            } else {
+                expect(movies[1].title).toBe('UpdatedTitle');
+                done();
+            }
+        })
+        service.updateMovie(
+            {
+                id: 10,
+                title: 'UpdatedTitle',
+                year: '2002',
+                runtime: '100',
+                genres: [ 'Comedy' ],
+                director: 'DIRECTOR',
+                actors: 'ACTORS',
+                plot: 'PLOT',
+                posterUrl: 'POSTERURL',
+                isFavorite: true,
+                isLater: true 
+            }
+        )
+    });
+
+    it('update should make a new instance of the input object', (done) => {
+        let count = 0;
+        const newObject = <Movie>{
+            id: 10,
+            title: 'UpdatedTitle',
+            year: '2002',
+            runtime: '100',
+            genres: [ 'Comedy' ],
+            director: 'DIRECTOR',
+            actors: 'ACTORS',
+            plot: 'PLOT',
+            posterUrl: 'POSTERURL',
+            isFavorite: true,
+            isLater: true 
+        }
+        service.getMovies().subscribe(movies => {
+            count++;
+            if (count === 2) {
+                expect(movies[1]).not.toBe(newObject);
+                done();
+            }
+        })
+        service.updateMovie(
+            newObject
+        )
+    });
+
+    it('getFavoriteMovies returns correct movies', (done) => {
+        service.getFavoriteMovies().subscribe(favs => {
+            const favIds = favs.map(fav => fav.id);
+            expect(favIds).toEqual([
+                10, 30
+            ]);
+            done();
+        })
+    });
+
+    it('getLaterMovies returns correct movies', (done) => {
+        service.getLaterMovies().subscribe(laters => {
+            const laterIds = laters.map(later => later.id);
+            expect(laterIds).toEqual([
+                20, 10
+            ]);
+            done();
+        })
+    });
 });
