@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, map, shareReplay } from "rxjs";
+import { BehaviorSubject, map, of, shareReplay } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { Genre } from "../model/genre";
 import { Movie } from "../model/movie";
@@ -10,6 +10,7 @@ import { genreMatch } from "../utility/genre-match";
     providedIn: 'root'
 })
 export class MovieService {
+    // Sole source of movies
     private movieList$ = new BehaviorSubject<Movie[]>([]);
 
     constructor(private httpClient: HttpClient) {
@@ -26,6 +27,10 @@ export class MovieService {
 
     getMovies(): Observable<Movie[]> {
         return this.movieList$.asObservable();
+    }
+
+    getDecadeList(): Observable<number[]> {
+        return of([0]);
     }
 
     updateMovie(movie: Movie): void {
