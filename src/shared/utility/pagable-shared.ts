@@ -6,7 +6,7 @@ import { genreMatch } from "./genre-match";
 
 const pageSize = 20;
 
-export function getFavoritesPagable(
+export function pagableShared(
     scroll$: Observable<void>,
     genre$: Observable<Genre>,
     movies$: Observable<Movie[]>,

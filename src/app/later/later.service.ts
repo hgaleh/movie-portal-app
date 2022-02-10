@@ -6,16 +6,16 @@ import { MovieService } from "src/shared/service/movie.service";
 import { pagableShared } from "src/shared/utility/pagable-shared";
 
 @Injectable()
-export class FavoriteService {
+export class LaterService {
 
     constructor(private movieService: MovieService) { }
 
-    getFavoritesPagable(scroll$: Observable<void>, genre$: Observable<Genre>): Observable<Movie[]> {
+    getLaterPagable(scroll$: Observable<void>, genre$: Observable<Genre>): Observable<Movie[]> {
         return pagableShared(
             scroll$,
             genre$,
             this.movieService.getMovies(),
-            movie => !!movie.isFavorite
+            movie => !!movie.isLater
         )
     }
 }
