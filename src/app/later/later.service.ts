@@ -10,10 +10,11 @@ export class LaterService {
 
     constructor(private movieService: MovieService) { }
 
-    getLaterPagable(scroll$: Observable<void>, genre$: Observable<Genre>): Observable<Movie[]> {
+    getLaterPagable(scroll$: Observable<void>, genre$: Observable<Genre>, decade$: Observable<number>): Observable<Movie[]> {
         return pagableShared(
             scroll$,
             genre$,
+            decade$,
             this.movieService.getMovies(),
             movie => !!movie.isLater
         )

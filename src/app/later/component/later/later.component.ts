@@ -17,6 +17,6 @@ export class LaterComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.gridData$ = this.service.getLaterPagable(this.grid.scroll, this.grid.genre);
+        this.gridData$ = this.service.getLaterPagable(this.grid.scroll, this.grid.genre, this.grid.decade);
     }
 }

@@ -10,10 +10,11 @@ export class FavoriteService {
 
     constructor(private movieService: MovieService) { }
 
-    getFavoritesPagable(scroll$: Observable<void>, genre$: Observable<Genre>): Observable<Movie[]> {
+    getFavoritesPagable(scroll$: Observable<void>, genre$: Observable<Genre>, decade$: Observable<number>): Observable<Movie[]> {
         return pagableShared(
             scroll$,
             genre$,
+            decade$,
             this.movieService.getMovies(),
             movie => !!movie.isFavorite
         )

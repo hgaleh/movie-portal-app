@@ -19,6 +19,6 @@ export class FavoriteComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.gridData$ = this.service.getFavoritesPagable(this.grid.scroll, this.grid.genre);
+        this.gridData$ = this.service.getFavoritesPagable(this.grid.scroll, this.grid.genre, this.grid.decade);
     }
 }
