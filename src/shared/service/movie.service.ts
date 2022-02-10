@@ -30,7 +30,11 @@ export class MovieService {
     }
 
     getDecadeList(): Observable<number[]> {
-        return of([0]);
+        return this.getMovies().pipe(
+            map(movies => movies.map(movie => Math.floor(Number(movie.year)/10) * 10)),
+            map(decades => new Set(decades)),
+            map(decades => Array.from(decades))
+        )
     }
 
     updateMovie(movie: Movie): void {
