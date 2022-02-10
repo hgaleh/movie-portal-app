@@ -27,9 +27,6 @@ export class DashboardComponent implements OnInit {
     
     ngOnInit(): void {
         const keyword$ = this.activatedRoute.queryParams.pipe(map(par => par['keyword'] || ''));
-        keyword$.subscribe(keyword => {
-            console.log({keyword});
-        })
         this.allMovieList$ = this.service.getMoviesPagable(this.grid.scroll, keyword$, this.grid.genre);
     }
 }
