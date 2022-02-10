@@ -6,7 +6,7 @@
     (touchstart)="onDragStart($event)"
     >
     <div class="card-list_card"
-        *ngFor="let movie of infinitScroll.itemsChange | async">
+        *ngFor="let movie of infinitScroll.itemsChange | async; trackBy: trackByFn">
         <div class="card-list_card_core fadeIn rounded-md" [style.backgroundImage]="getImageUrl(movie)">
         </div>
         <p class="card-list_card_title">{{movie.title}}</p>

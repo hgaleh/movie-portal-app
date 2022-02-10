@@ -31,4 +31,8 @@ export class GridComponent {
         this.genre.emit(gen);
         this.genreText = gen;
     }
+
+    trackByFn(index: number, item: Movie): any {
+        return item.id;
+    }
 }

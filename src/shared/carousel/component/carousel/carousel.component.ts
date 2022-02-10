@@ -45,6 +45,10 @@ export class CarouselComponent implements OnInit, OnDestroy {
     prev(): void {
       this.infinitScroll.scrollLeft();
     }
+
+    trackByFn(index: number, item: Movie): any {
+        return item.id;
+    }
   
     next(): void {
       this.infinitScroll.scrollRight();
