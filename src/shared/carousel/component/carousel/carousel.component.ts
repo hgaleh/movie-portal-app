@@ -16,6 +16,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
 
     infinitScroll: InfinitScroll<Movie>;
     private subscription = new Subscription();
+    private scrollLeftSubscription!: Subscription;
     private dragging!: boolean;
   
     constructor(private service: InfiniteScrollService) {
@@ -24,13 +25,16 @@ export class CarouselComponent implements OnInit, OnDestroy {
   
     ngOnDestroy(): void {
       this.subscription.unsubscribe();
+      this.scrollLeftSubscription.unsubscribe();
     }
   
     ngOnInit(): void {
       this.infinitScroll.changeViewWidth(this.cardList.nativeElement.offsetWidth);
-      this.infinitScroll.scrollLeftChange.subscribe(left => {
+
+      this.scrollLeftSubscription = this.infinitScroll.scrollLeftChange.subscribe(left => {
         this.cardList.nativeElement.scrollLeft = left;
       });
+
       this.subscription = this.infinitScroll.autoplay();
     }
   
