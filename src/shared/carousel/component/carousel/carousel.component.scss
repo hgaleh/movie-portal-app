@@ -3,6 +3,7 @@
         $card-width: 162px;
         display: flex;
         overflow: hidden;
+        height: 270px;
         
         &_card {
             width: $card-width;
