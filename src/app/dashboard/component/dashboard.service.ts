@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { combineLatest, map, mergeMap, startWith, Subscription } from "rxjs";
+import { combineLatest, map, mergeMap, startWith, Subscription, take, zip } from "rxjs";
 import { Observable } from "rxjs/internal/Observable";
 import { Movie } from "src/shared/model/movie";
 import { Genre } from "src/shared/model/genre";

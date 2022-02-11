@@ -1,14 +1,5 @@
-@keyframes placeHolderShimmer {
-    0% {
-        background-position: -30vw 0;
-    }
 
-    100% {
-        background-position: 30vw 0;
-    }
-}
-
-img.loading-with-directive {
+@mixin loading {
     animation-duration: 6s;
     animation-fill-mode: forwards;
     animation-iteration-count: 3;
@@ -20,4 +11,18 @@ img.loading-with-directive {
     height: 237px;
     position: relative;
     padding-top: 50px;
+}
+
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -30vw 0;
+    }
+
+    100% {
+        background-position: 30vw 0;
+    }
+}
+
+.loading-with-directive {
+    @include loading()
 }
