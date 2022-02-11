@@ -16,9 +16,9 @@ export function pagableShared(
 ): Observable<Movie[]> {
     const obs = new Observable(observer => {
         let scrollCounter: number;
-        let subscription: Subscription;
+        let subscription = new Subscription();
         let innerSubscription = new Subscription();
-        subscription = combineLatest([decade$.pipe(startWith(undefined)), genre$.pipe(startWith(undefined))]).
+        subscription.add(combineLatest([decade$.pipe(startWith(undefined)), genre$.pipe(startWith(undefined))]).
         subscribe(([decade, genre]) => {
                 scrollCounter = 0;
                 innerSubscription.unsubscribe();
@@ -32,7 +32,7 @@ export function pagableShared(
                 })
                 subscription.add(innerSubscription);
             }
-        )
+        ))
         return subscription;
     }).pipe(
         mergeMap((res: any) => {

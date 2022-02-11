@@ -1,12 +1,16 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { debounceTime, Subscription } from 'rxjs';
+import { slideInAnimation } from './app.animation';
 
 @Component({
   selector: 'bit-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    slideInAnimation
+  ]
 })
 export class AppComponent implements OnDestroy {
   search: FormControl;
@@ -24,6 +28,10 @@ export class AppComponent implements OnDestroy {
         }
       })
     })
+  }
+
+  prepareRoute(outlet: RouterOutlet): void {
+    return outlet?.activatedRouteData?.['animation'];
   }
 
   ngOnDestroy(): void {
