@@ -8,19 +8,14 @@
             width: $card-width;
             margin-right: 10px;
             cursor: pointer;
-         
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            
             &_core {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
                 height: 234px;
-                background-size: cover;
-                width: $card-width;
-        
-                img {
-                    width: 100%;
-                    border-radius: 50%;
-                }
+                width: 100%;
             }
         
             &_title {

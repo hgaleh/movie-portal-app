@@ -19,7 +19,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     private scrollLeftSubscription!: Subscription;
     private dragging!: boolean;
   
-    constructor(private service: InfiniteScrollService) {
+    constructor(service: InfiniteScrollService) {
       this.infinitScroll = service.getNewInfiniteScroll();
     }
   
@@ -41,9 +41,14 @@ export class CarouselComponent implements OnInit, OnDestroy {
     @Input() set movieList(val: Movie[] | null) {
       this.infinitScroll.changeItems(val || []);
     }
-  
-    getImageUrl(brand: Movie) {
-      return `url(${brand.posterUrl}), url(/assets/broken_image_black_24dp.svg)`;
+
+    onImageError(e: Event, movie: Movie): void {
+      (e.target as any).classList.remove('loading');
+       movie.posterUrl = '/assets/broken_image_black_24dp.svg';
+    }
+
+    loadImage(e: Event): void {
+      (e.target as any).classList.remove('loading');
     }
   
     prev(): void {

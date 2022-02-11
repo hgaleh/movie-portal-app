@@ -3,27 +3,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'style/image.scss';
+@import 'style/scroll.scss';
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-html {
-    //firefox
-    scrollbar-color: #393812 transparent;
-    scrollbar-width: 8px;
-
-    // chrome
-    &::-webkit-scrollbar {
-        height: 12px;
-        width: 8px;
-        background: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background: #393812;
-        border-radius: 1ex;
-    }
-
-    &::-webkit-scrollbar-corner {
-        background: #000;
-    }
-}

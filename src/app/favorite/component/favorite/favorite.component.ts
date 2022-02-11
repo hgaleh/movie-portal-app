@@ -15,8 +15,7 @@ export class FavoriteComponent implements OnInit {
     gridData$!: Observable<Movie[]>;
     @ViewChild('grid', { static: true }) grid!: GridComponent;
 
-    constructor(private service: FavoriteService) {
-    }
+    constructor(private service: FavoriteService) { }
 
     ngOnInit(): void {
         this.gridData$ = this.service.getFavoritesPagable(this.grid.scroll, this.grid.genre, this.grid.decade);

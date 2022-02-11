@@ -5,18 +5,14 @@ import { MovieService } from "src/shared/service/movie.service";
 @Component({
     selector: 'bit-thumbnail',
     templateUrl: './thumbnail.component.html',
-    styleUrls: [ './thumbnail.component.scss' ]
+    styleUrls: ['./thumbnail.component.scss']
 })
 export class ThumbnailComponent {
     @Input() movie!: Movie;
 
     constructor(
         private movieService: MovieService
-    ) {}
-
-    imageNotFound(movie: Movie): void {
-        movie.posterUrl = '/assets/broken_image_black_24dp.svg';
-    }
+    ) { }
 
     toggleLater(e: MouseEvent): void {
         e.preventDefault();

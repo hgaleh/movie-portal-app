@@ -1,6 +1,6 @@
 <figure class="w-full duration-200 hover:scale-105 ease-in
     transition-all rounded-md hover:shadow-md transform cursor-pointer flex flex-col justify-between">
-    <img [src]="movie.posterUrl" draggable="false" (error)="imageNotFound(movie)" class="
+    <img [src]="movie.posterUrl" imageLoading draggable="false" class="
             rounded-md w-full select-none" [alt]="movie.title">
     <figcaption class="flex">
         <table class="w-full">
