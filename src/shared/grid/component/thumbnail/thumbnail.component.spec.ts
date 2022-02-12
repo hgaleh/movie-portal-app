@@ -13,21 +13,7 @@ describe('Thumbnail test', () => {
     let component: ThumbnailComponent;
     let image: DebugElement;
     const query = (query: string) => fixture.debugElement.query(By.css(query));
-    const movie = {
-        id: 141,
-        title: "Hotel Rwanda",
-        year: "2004",
-        runtime: "121",
-        genres: [
-            "Drama",
-            "History",
-            "War"
-        ],
-        director: "Terry George",
-        actors: "Xolani Mali, Don Cheadle, Desmond Dube, Hakeem Kae-Kazim",
-        plot: "Paul Rusesabagina was a hotel manager who housed over a thousand Tutsi refugees during their struggle against the Hutu militia in Rwanda.",
-        posterUrl: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTI2MzQyNTc1M15BMl5BanBnXkFtZTYwMjExNjc3._V1_SX300.jpg"
-    } as Movie;
+    let movie: Movie;;
 
     beforeEach(() => {
         fixture = TestBed.configureTestingModule({
@@ -44,6 +30,21 @@ describe('Thumbnail test', () => {
             ],
             schemas: [ NO_ERRORS_SCHEMA ]
         }).createComponent(ThumbnailComponent);
+        movie = <Movie>{
+            id: 141,
+            title: "Hotel Rwanda",
+            year: "2004",
+            runtime: "121",
+            genres: [
+                "Drama",
+                "History",
+                "War"
+            ],
+            director: "Terry George",
+            actors: "Xolani Mali, Don Cheadle, Desmond Dube, Hakeem Kae-Kazim",
+            plot: "Paul Rusesabagina was a hotel manager who housed over a thousand Tutsi refugees during their struggle against the Hutu militia in Rwanda.",
+            posterUrl: "https://images-na.ssl-images-amazon.com/images/M/MV5BMTI2MzQyNTc1M15BMl5BanBnXkFtZTYwMjExNjc3._V1_SX300.jpg"
+        };
         component = fixture.componentInstance;
         component.movie = movie;
         fixture.detectChanges();
@@ -130,4 +131,40 @@ describe('Thumbnail test', () => {
             done();
         })
     });
+
+    it('favorite button title is Added to Favorite when isFavorite true', (done) => {
+        component.movie.isFavorite = true;
+        const dbg = fixture.debugElement.query(By.css('figcaption > button'));
+        dbg.nativeElement.click();
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+            const dbgFav = fixture.nativeElement.parentNode.querySelector('button:nth-child(2) > .hidden > span');
+            expect(dbgFav.textContent).toBe('Add to Favorite');
+            done();
+        })
+    });
+
+    it('isLater button title is Added to Later when isLater true', (done) => {
+        component.movie.isLater = true;
+        const dbg = fixture.debugElement.query(By.css('figcaption > button'));
+        dbg.nativeElement.click();
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+            const dbgFav = fixture.nativeElement.parentNode.querySelector('button:nth-child(1) > .hidden > span');
+            expect(dbgFav.textContent).toBe('Add to Later');
+            done();
+        })
+    });
+
+    it('click on add to later will call service', () => {
+        const e = jasmine.createSpyObj('Event', ['preventDefault', 'stopPropagation']);
+        component.toggleLater(e);
+        expect(mockService.updateMovie).toHaveBeenCalled();
+    });
+
+    it('click on add to favorite will call service', () => {
+        const e = jasmine.createSpyObj('Event', ['preventDefault', 'stopPropagation']);
+        component.toggleLater(e);
+        expect(mockService.updateMovie).toHaveBeenCalled();
+    })
 });
