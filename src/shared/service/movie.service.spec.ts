@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { map, mergeMap, Observable, of } from 'rxjs';
+import { map, mergeMap, Observable, of, take } from 'rxjs';
 import { TestScheduler } from 'rxjs/testing';
 import { Genre } from '../model/genre';
 import { Movie } from '../model/movie';
@@ -102,8 +102,8 @@ describe('movie service test', () => {
         });
     });
 
-    it('update should make a new instance of the input object', (done) => {
-        let count = 0;
+    it('update should make a new instance of the input object', () => {
+
         const newObject = <Movie>{
             id: 10,
             title: 'UpdatedTitle',
@@ -117,36 +117,44 @@ describe('movie service test', () => {
             isFavorite: true,
             isLater: true 
         }
-        service.getMovies().subscribe(movies => {
-            count++;
-            if (count === 2) {
-                expect(movies[1]).not.toBe(newObject);
-                done();
-            }
-        })
-        service.updateMovie(
-            newObject
-        )
+
+        testScheduler.run(helpers => {
+            const { cold, expectObservable } = helpers;
+            const movies$ = service.getMovies().pipe(map(movies => movies[1]), take(2));
+            cold('-a').subscribe(() => {
+                service.updateMovie(
+                    newObject
+                )
+            })
+            expectObservable(movies$).toBe('a(b|)', {
+                a: mockData.movies[1],
+                b: newObject
+            })
+        });
     });
 
-    it('getFavoriteMovies returns correct movies', (done) => {
-        service.getFavoriteMovies().subscribe(favs => {
-            const favIds = favs.map(fav => fav.id);
-            expect(favIds).toEqual([
-                10, 30
-            ]);
-            done();
-        })
+    it('getFavoriteMovies returns correct movies', () => {
+        testScheduler.run(helpers => {
+            const { expectObservable } = helpers;
+            const fav$ = service.getFavoriteMovies().pipe(map(x => x.map(m => m.id)));
+            expectObservable(fav$).toBe('a', {
+                a: [
+                    10, 30
+                ]
+            });
+        });
     });
 
-    it('getLaterMovies returns correct movies', (done) => {
-        service.getLaterMovies().subscribe(laters => {
-            const laterIds = laters.map(later => later.id);
-            expect(laterIds).toEqual([
-                20, 10
-            ]);
-            done();
-        })
+    it('getLaterMovies returns correct movies', () => {
+        testScheduler.run(helpers => {
+            const { expectObservable } = helpers;
+            const fav$ = service.getLaterMovies().pipe(map(x => x.map(m => m.id)));
+            expectObservable(fav$).toBe('a', {
+                a: [
+                    20, 10
+                ]
+            });
+        });
     });
 });
 
