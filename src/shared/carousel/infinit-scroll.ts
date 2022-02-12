@@ -27,9 +27,9 @@ export class InfinitScroll<T> {
     }
 
     autoplay(): Subscription {
-        return interval(25).subscribe(() => {
+        return interval(80, animationFrameScheduler).subscribe(() => {
             this.lazyRight();
-            this.scrollLocationPosition += 2;
+            this.scrollLocationPosition += 1;
             this.scrollLeftChange.next(this.scrollLocationPosition);
         });
     }
@@ -49,8 +49,7 @@ export class InfinitScroll<T> {
     }
 
     scroll(dx: number): void {
-        this.lazyLeft();
-        this.lazyRight();
+        (dx > 0) ? this.lazyLeft() : this.lazyRight();
         this.scrollLocationPosition -= dx;
         this.scrollLeftChange.next(this.scrollLocationPosition);
     }
@@ -69,6 +68,7 @@ export class InfinitScroll<T> {
         }
     }
 
+    // never lets scrollLeft to be incorrect
     private checkBoundriesForStartLocation(val: number): number {
         const max = this.scrollItems.length * this.itemWidth - this.viewWidth;
         if (val > max) {

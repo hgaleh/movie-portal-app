@@ -16,10 +16,12 @@ describe('ReplaceWithYourComponent: ', () => {
         'needLazyRight', 'changeLocationSmoothly'
     ]);
     const subscription = jasmine.createSpyObj('subscription', ['unsubscribe']);
+    const subscriptionScrollLeft = jasmine.createSpyObj('subscription', ['unsubscribe']);
     fakeService.getNewInfiniteScroll = jasmine.createSpy('getNewInfiniteScroll').and.
         returnValue(fakeInfiniteScroll);
     const scrollLeftChange = jasmine.createSpyObj('scrollLeftChange', ['subscribe']);
     fakeInfiniteScroll.scrollLeftChange = scrollLeftChange;
+    scrollLeftChange.subscribe = jasmine.createSpy('subscrine').and.returnValue(subscriptionScrollLeft);
     fakeInfiniteScroll.autoplay = jasmine.createSpy('autoplay').and.returnValue(subscription);
 
     beforeEach(async () => {
@@ -46,5 +48,13 @@ describe('ReplaceWithYourComponent: ', () => {
     it('should be created', () => {
         expect(component).toBeTruthy();
     });
+
+    it('destroy calls unsubscribe', () => {
+        fixture = TestBed.createComponent(CarouselComponent);
+        fixture.detectChanges();
+        fixture.componentInstance.ngOnDestroy();
+        expect(subscription.unsubscribe).toHaveBeenCalled();
+        expect(subscriptionScrollLeft.unsubscribe).toHaveBeenCalled();
+    })
 
 });
