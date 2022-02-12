@@ -1,5 +1,4 @@
 import { Movie } from "../model/movie";
-import { Genre } from "../model/genre";
 
 export function decadeMatch(movie: Movie, decade?: number): boolean {
     const movieYear = +movie.year;
