@@ -54,8 +54,8 @@ export class DashboardService {
         }).pipe(
             mergeMap((res: any) => {
                 return this.movieService.getMovies().pipe(map(all => {
-                    const start = res.scroll * this.pageSize;
-                    return all.filter(movie => this.matchCondition(movie, res.keyword, res.genre, res.decade)).slice(0, start + this.pageSize - 1);
+                    const end = res.scroll * this.pageSize;
+                    return all.filter(movie => this.matchCondition(movie, res.keyword, res.genre, res.decade)).slice(0, end);
                 }))    
             })    
         );
