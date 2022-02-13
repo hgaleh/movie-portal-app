@@ -14,7 +14,7 @@ export function pagableShared(
     movies$: Observable<Movie[]>,
     additionalCriteria: (movie: Movie) => boolean
 ): Observable<Movie[]> {
-    const obs = new Observable(observer => {
+    return new Observable(observer => {
         let scrollCounter: number;
         let subscription = new Subscription();
         let innerSubscription = new Subscription();
@@ -37,10 +37,9 @@ export function pagableShared(
     }).pipe(
         mergeMap((res: any) => {
             return movies$.pipe(map(all => {
-                const start = res.scroll * pageSize;
-                return all.filter(movie => genreMatch(movie, res.genre) && additionalCriteria(movie) && decadeMatch(movie, res.decade)).slice(0, start + pageSize - 1);
-            }))    
-        })    
+                const end = res.scroll * pageSize;
+                return all.filter(movie => genreMatch(movie, res.genre) && additionalCriteria(movie) && decadeMatch(movie, res.decade)).slice(0, end);
+            }))
+        })
     );
-    return obs;
 }
