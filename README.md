@@ -1,3 +1,5 @@
+![Screenshot of the running app](/src/assets/screenshot.png)
+
 Implementation of a simple Movie Portal App (Mobile and Desktop responsive) using Angular framework.
 
 The app have these mandatory features: 
