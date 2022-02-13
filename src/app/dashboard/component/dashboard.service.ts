@@ -30,7 +30,7 @@ export class DashboardService {
         genre$: Observable<Genre>,
         decade$: Observable<number>
     ): Observable<Movie[]> {
-        const obs = new Observable(observer => {
+        return new Observable(observer => {
             const subscription = new Subscription();
             let innerSubscription = new Subscription();
             let scrollCounter: number;
@@ -59,7 +59,6 @@ export class DashboardService {
                 }))    
             })    
         );
-        return obs;
     }
 
     matchCondition(movie: Movie, keyword: string, genre: Genre, decade: number): boolean {
