@@ -5,7 +5,7 @@ import { FavoriteComponent } from './favorite.component';
 import { FavoriteService } from '../../favorite.service';
 import { By } from '@angular/platform-browser';
 
-describe('FavoriteComponent: ', () => {
+describe('FavoriteComponent test', () => {
     let component: FavoriteComponent;
     let fixture: ComponentFixture<FavoriteComponent>;
     let service = jasmine.createSpyObj('FavoriteService', [ 'getFavoritesPagable' ]);

@@ -1,7 +1,7 @@
 import { Movie } from "../model/movie";
 import { decadeMatch } from "./decade-match";
 
-describe('Test decade-match class', () => {
+describe('decadeMatch test', () => {
 
     it('movie year bigger than decade range', () => {
         const movie = {

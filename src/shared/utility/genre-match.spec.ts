@@ -1,7 +1,7 @@
 import { Movie } from "../model/movie";
 import { genreMatch } from "./genre-match";
 
-describe('GenreMatch test', () => {
+describe('genreMatch test', () => {
 
     it('genre empty always match', () => {
         const movie = {

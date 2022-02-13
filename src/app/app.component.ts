@@ -19,6 +19,7 @@ export class AppComponent implements OnDestroy {
     fb: FormBuilder,
     router: Router
   ) {
+
     this.search = fb.control('');
 
     this.subscription = this.search.valueChanges.pipe(debounceTime(1000)).subscribe(keyword => {
@@ -27,7 +28,8 @@ export class AppComponent implements OnDestroy {
           keyword
         }
       })
-    })
+    });
+  
   }
 
   prepareRoute(outlet: RouterOutlet): void {

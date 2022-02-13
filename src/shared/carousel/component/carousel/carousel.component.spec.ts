@@ -5,7 +5,7 @@ import { InfiniteScrollService } from '../../infinite-scroll.service';
 
 
 
-describe('ReplaceWithYourComponent: ', () => {
+describe('CarouselComponent test', () => {
     let component: CarouselComponent;
     let fixture: ComponentFixture<CarouselComponent>;
     const fakeService = jasmine.createSpyObj('fakeInfiniteScrollService', ['getNewInfiniteScroll']);

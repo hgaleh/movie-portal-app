@@ -2,7 +2,7 @@ import { TestBed } from "@angular/core/testing";
 import { InfinitScroll } from "./infinit-scroll";
 import { InfiniteScrollService } from "./infinite-scroll.service";
 
-describe('Test infinite scroll service', () => {
+describe('InfiniteScrollService test', () => {
     let service: InfiniteScrollService;
 
     beforeEach(() => {

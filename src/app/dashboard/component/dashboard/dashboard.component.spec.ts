@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 
 
-describe('dashboard component test', () => {
+describe('DashboardComponent test', () => {
     let component: DashboardComponent;
     let fixture: ComponentFixture<DashboardComponent>;
     let activatedRouteMock = {

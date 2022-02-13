@@ -6,7 +6,7 @@ import { Genre } from '../model/genre';
 import { Movie } from '../model/movie';
 import { MovieService } from './movie.service';
 
-describe('movie service test', () => {
+describe('MovieService test', () => {
     let mockData: {
         genres: Genre[],
         movies: Movie[]

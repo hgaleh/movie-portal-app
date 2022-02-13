@@ -28,7 +28,7 @@ class MockThumbnail {
     @Input() movie!: Movie;
 }
 
-describe('Grid Test', () => {
+describe('GridComponent test', () => {
     let fixture: ComponentFixture<GridComponent>;
     let component: GridComponent;
     let mockService;

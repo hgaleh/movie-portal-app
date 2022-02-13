@@ -5,7 +5,7 @@ import { Movie } from "src/shared/model/movie";
 import { MovieService } from '../../../shared/service/movie.service';
 import { DashboardService } from "./dashboard.service";
 
-describe('Dashboard service test', () => {
+describe('DashboardService test', () => {
 
     let testScheduler: TestScheduler;
     let movieServiceMock: jasmine.SpyObj<MovieService>;

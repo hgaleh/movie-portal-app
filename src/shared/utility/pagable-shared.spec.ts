@@ -3,7 +3,7 @@ import { TestScheduler } from "rxjs/testing";
 import { Movie } from "../model/movie";
 import { pagableShared } from "./pagable-shared";
 
-describe('PagableShared test', () => {
+describe('pagableShared test', () => {
 
     let testScheduler: TestScheduler;
 

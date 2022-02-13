@@ -5,7 +5,7 @@ import { LaterComponent } from './later.component';
 import { LaterService } from '../../later.service';
 import { By } from '@angular/platform-browser';
 
-describe('LaterComponent: ', () => {
+describe('LaterComponent test', () => {
     let component: LaterComponent;
     let fixture: ComponentFixture<LaterComponent>;
     let service = jasmine.createSpyObj('LaterService', [ 'getLaterPagable' ]);

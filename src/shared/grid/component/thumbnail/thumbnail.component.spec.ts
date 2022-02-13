@@ -7,7 +7,7 @@ import { Movie } from "src/shared/model/movie";
 import { MovieService } from "src/shared/service/movie.service";
 import { ThumbnailComponent } from "./thumbnail.component";
 
-describe('Thumbnail test', () => {
+describe('ThumbnailComponent test', () => {
     let mockService = jasmine.createSpyObj('MovieService', [ 'updateMovie' ]);
     let fixture: ComponentFixture<ThumbnailComponent>;
     let component: ThumbnailComponent;

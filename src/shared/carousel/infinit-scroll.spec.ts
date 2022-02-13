@@ -1,8 +1,8 @@
-import { interval, of, Subject, Subscription, take, timer } from "rxjs";
+import { Subscription, take } from "rxjs";
 import { TestScheduler } from "rxjs/testing";
 import { InfinitScroll } from "./infinit-scroll";
 
-describe('infinite scroll test', () => {
+describe('InfinitScroll test', () => {
     let infiniteScroll: InfinitScroll<string>;
     let testScheduler: TestScheduler;
     let subscription: Subscription;

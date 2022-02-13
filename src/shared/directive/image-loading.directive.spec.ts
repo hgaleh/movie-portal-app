@@ -12,7 +12,7 @@ class TestComponent {
 
 }
 
-describe('image loading directive test', () => {
+describe('ImageLoadingDirective test', () => {
 
     let fixture: ComponentFixture<TestComponent>;
     let img: DebugElement;

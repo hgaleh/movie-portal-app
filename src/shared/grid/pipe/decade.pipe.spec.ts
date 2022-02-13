@@ -1,6 +1,6 @@
 import { DecadePipe } from "./decade.pipe";
 
-describe('Test decade pipe', () => {
+describe('DecadePipe test', () => {
     let pipe: DecadePipe;
 
     beforeEach(() => {
